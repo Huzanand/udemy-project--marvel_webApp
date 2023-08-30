@@ -15,13 +15,13 @@ const AppHeader = () => {
                     <li><NavLink
                      end 
                      style={({isActive}) => ({color: isActive ? '#9f0013' : 'inherit'})}
-                     to='udemy-project--marvel_webApp/'>Characters</NavLink>
+                     to='/'>Characters</NavLink>
                     </li>
                     /
                     <li><NavLink 
                     end 
                     style={({isActive}) => ({color: isActive ? '#9f0013' : 'inherit'})} 
-                    to='udemy-project--marvel_webApp/comics'>Comics</NavLink>
+                    to='/comics'>Comics</NavLink>
                     </li>
                 </ul>
             </nav>
