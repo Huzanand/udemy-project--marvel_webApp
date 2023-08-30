@@ -25,7 +25,7 @@ const SearchForm = ({onCharSearch}) =>{
     const result = !char ? null : char.length > 0 ?
             <div className='char__success-wrap'>
                 <div className="char__success-content">There is! Visit {char[0].name} page?</div>
-                <Link to={`/char/${char[0].id}`} 
+                <Link to={`udemy-project--marvel_webApp/char/${char[0].id}`} 
                       className="button button__secondary">
                     <div className="inner">TO PAGE</div>
                 </Link>
