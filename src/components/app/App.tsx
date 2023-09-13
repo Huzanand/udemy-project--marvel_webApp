@@ -11,7 +11,7 @@ const SingleChar = lazy(() => import('../singleChar/SingleChar'))
 const SingleComic = lazy(() => import('../singleComic/SingleComic'))
 const PageNotFound = lazy(() => import('../pages/404/Page404'))    
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <Router basename="/udemy-project--marvel_webApp">
             <div className="app">

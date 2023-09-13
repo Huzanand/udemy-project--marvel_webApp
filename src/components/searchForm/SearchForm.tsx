@@ -1,7 +1,7 @@
 import './searchForm.scss'
 
 import useMarvelService from '../../services/MarvelService';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {Formik, Form, Field, ErrorMessage as FormikErrorMessage} from 'formik'
 import {Link} from "react-router-dom"
 

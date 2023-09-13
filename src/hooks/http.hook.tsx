@@ -1,10 +1,25 @@
 import { useState, useCallback } from "react";
 
-export const useHttp = () =>{
+interface IRequest {
+    (url: string, 
+        method?: string, 
+        body?: any, 
+        headers?: HeadersInit): Promise<any>;
+}
+
+interface IuseHttp{
+    loading: boolean;
+    request: IRequest;
+    error: boolean | null | string;
+    clearError: () => void;
+}
+  
+
+export const useHttp: () => IuseHttp = () =>{
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const request = useCallback(async (url, method = 'GET', body = null, headers = {'Content-Type':'appliation/json'}) =>{
+    const request: IRequest = useCallback(async (url, method = 'GET', body = null, headers = {'Content-Type':'appliation/json'}) =>{
 
         setLoading(true);
 
@@ -19,7 +34,7 @@ export const useHttp = () =>{
 
             setLoading(false);
             return data;
-        } catch(e){
+        } catch(e: any){
             setLoading(false);
             setError(e.message);
             throw e;

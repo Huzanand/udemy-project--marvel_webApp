@@ -1,7 +1,7 @@
 import './comicsList.scss';
 import { Link } from 'react-router-dom';
 import { useList } from '../../hooks/list.hook';
-import {useEffect } from 'react';
+import React, {useEffect } from 'react';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 

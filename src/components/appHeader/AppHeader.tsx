@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './appHeader.scss';
 
-const AppHeader = () => {
+const AppHeader: React.FC = () => {
     return (
         <header className="app__header">
             <h1 className="app__title">

@@ -5,11 +5,16 @@ import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Skeleton from '../skeleton/Skeleton'
 
+import { IChar } from '../../types/data';
+
 import './charInfo.scss';
 
-const CharInfo = props => {
-    const [char, setChar] = useState(null);
+interface ICharInfoProps {
+    charId: number
+}
 
+const CharInfo: React.FC<ICharInfoProps> = (props) => {
+    const [char, setChar] = useState<IChar | null>(null);
     const {loading, error, getCharacter, clearError} = useMarvelService();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,10 +47,14 @@ const CharInfo = props => {
 
 }
 
-const View = ({char}) => {
-    const {name, description, thumbnail, homepage, wiki, comics} = char;
+interface IViewProps{
+    char: IChar
+}
+
+const View: React.FC<IViewProps> = (props) => {
+    const {name, description, thumbnail, homepage, wiki, comics} = props.char;
     
-    let imgStyle = {'objectFit' : 'cover'};
+    let imgStyle: React.CSSProperties = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg' ||
     thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708.gif') {
         imgStyle = {'objectFit' : 'unset'};
