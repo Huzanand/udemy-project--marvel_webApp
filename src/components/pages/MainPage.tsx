@@ -7,16 +7,15 @@ import CharInfo from "../charInfo/CharInfo";
 import SearchForm from "../searchForm/SearchForm";
 import decoration from '../../resources/img/vision.png';
 
-
-const MainPage = () => {
-    const [selectedChar, setChar] = useState(null);
-    const [searchChar, setSearchChar] = useState(null)
+const MainPage: React.FC = () => {
+    const [selectedChar, setChar] = useState<number | null>(null);
+    const [searchChar, setSearchChar] = useState<number | null>(null)
         
-    const onCharSelected = id => {
+    const onCharSelected = (id) => {
         setChar(id)
     }
 
-    const onCharSearch = id => {
+    const onCharSearch = (id: number) => {
         setSearchChar(id)
     }
     

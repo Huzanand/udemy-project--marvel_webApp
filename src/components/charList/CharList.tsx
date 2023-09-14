@@ -1,30 +1,39 @@
 import './charList.scss';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useList } from '../../hooks/list.hook';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import {TransitionGroup, CSSTransition} from "react-transition-group"
 
-const CharList = (props) => {
+import { IChar } from '../../types/data';
+
+interface ICharList {
+    onCharSelected: (charId: number) => void
+}
+
+const CharList: React.FC<ICharList> = (props) => {
     const {itemList, newItemsLoading, offset, itemsEnded, onRequest, loading, error} = useList('char');
+    // const itemListTyped: IChar[] = itemList as IChar[];
 
     useEffect(() => {
         onRequest()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const itemRefs = useRef([]);
+    const itemRefs = useRef<(HTMLElement | null)[]>([]);
 
-    const focusOnItem = (id) => {
-        itemRefs.current.forEach(item => item.classList.remove('char__item_selected'));
-        itemRefs.current[id].classList.add('char__item_selected');
-        itemRefs.current[id].focus();
+    const focusOnItem = (id: number) => {
+        if(id  && itemRefs.current[id]){
+            itemRefs.current.forEach(item => item!.classList.remove('char__item_selected'));
+            itemRefs.current[id]!.classList.add('char__item_selected');
+            itemRefs.current[id]!.focus();
+        }
     }
 
-    function renderItems(arr) {
+    function renderItems(arr: IChar[]): JSX.Element {
         const items = arr.map((item, i) => {
-            let imgStyle = {'objectFit' : 'cover'};
+            let imgStyle: React.CSSProperties = {'objectFit' : 'cover'};
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg' ||
                 item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708.gif') {
                     imgStyle = {'objectFit' : 'unset'};
@@ -54,7 +63,7 @@ const CharList = (props) => {
         )
     }
 
-        const items = renderItems(itemList)
+        const items = renderItems(itemList as(IChar[]))
 
         const spinner = loading ? <Spinner/> : null;
         const errorMessage = error ? <ErrorMessage/> : null;

@@ -4,7 +4,7 @@
 // }
 
 export interface IChar {
-    id?: number;
+    id: number;
     name: string;
     description: string;
     thumbnail: string;
